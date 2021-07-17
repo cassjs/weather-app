@@ -8,5 +8,5 @@ app = Flask(
     )
 
 @app.route("/")
-def index():
-    return render_template("base.html")
+def dashboard():
+    return render_template("dashboard.html")
