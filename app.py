@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy 
 
 app = Flask(__name__)
@@ -17,8 +17,16 @@ class City(db.Model):
 db.create_all()
 
 ### ROUTES ###
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        newcity = request.form.get('city')
+        # If city addition exists, add to database, else do nothing
+        if newcity:
+            newcity_obj = City(cityname=newcity)
+            db.session.add(newcity_obj)
+            db.session.commit()
+    
     # Create variable to hold ALL cities
     cities = City.query.all()
     
@@ -33,6 +41,9 @@ def index():
         
         # send request to api
         r = requests.get(url.format(city.cityname)).json()
+        
+        # view data returned from api
+        print(r)
         
         # create dictionary
         weather = {

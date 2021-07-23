@@ -14,14 +14,17 @@
 <body class="bg-info">
     
     <div class="position-absolute top-50 start-50 translate-middle">
+
         <h3 class="text-center">What's Today's Weather?</h3>
 
-        <div class="input-group mb-3" style="width: 18rem;">
-                <input type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon2">
+        <form method="POST">
+            <div class="input-group mb-3" style="width: 18rem;">
+                <input type="text" class="form-control" name="city">
                 <div class="input-group-append">
-                <button class="btn btn-primary" type="button">Search</button>
+                    <button class="btn btn-primary" type="button">Search</button>
                 </div>
-        </div>
+            </div>
+        </form>
 
         {% for weather in weather_data %}
         <div class="card" style="width: 18rem;">
