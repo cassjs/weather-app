@@ -28,7 +28,7 @@ def get_weather_data(city):
 
 ### ROUTES ###
 @app.route('/', methods=['GET'])
-def index_get():
+def index():
     # Create variable to hold ALL cities
     cities = City.query.all()
 
@@ -57,8 +57,8 @@ def index_get():
     
     return render_template('base.html', weather_data=weather_data)
 
-@app.route('/', methods=['POST'])
-def index_post():
+@app.route('/add/', methods=['POST'])
+def add():
     error_msg = ''
     newcity = request.form.get('city')
     
@@ -83,7 +83,7 @@ def index_post():
             print(error_msg)
     
     
-    return redirect(url_for('index_get'))
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
