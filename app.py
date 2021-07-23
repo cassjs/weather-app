@@ -16,14 +16,17 @@ class City(db.Model):
     
 db.create_all()
 
+def get_weather_data(city):
+    # Open Weather API: https://openweathermap.org/
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={ city }&units=imperial&appid='
+    r = requests.get(url).json()
+    return r
+
 ### ROUTES ###
 @app.route('/', methods=['GET'])
 def index_get():
     # Create variable to hold ALL cities
     cities = City.query.all()
-    
-    # Open Weather API: https://openweathermap.org/
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid='
 
     # List that holds weather for all cities
     weather_data = []
@@ -31,11 +34,9 @@ def index_get():
     # For each city in loop, send a request to api to fetch data, then place data in dictionary
     for city in cities:
         
-        # send request to api
-        r = requests.get(url.format(city.cityname)).json()
-        
+        r = get_weather_data(city.cityname)
         # view data returned from api
-        print(r)
+        # print(r)
         
         # create dictionary
         weather = {
@@ -60,13 +61,23 @@ def index_post():
     if newcity:
         # Check if city is already in database
         cityexists = City.query.filter_by(cityname=newcity).first()
-        # If city does not exist, add to database, else do not add
+        
         if not cityexists:
-            newcity_obj = City(cityname=newcity)
-            db.session.add(newcity_obj)
-            db.session.commit()
+            newcity_data = get_weather_data(newcity)
+            # Check if city is a valid entry
+            if newcity_data['cod'] == 200:
+                newcity_obj = City(cityname=newcity)
+                
+                # Add city to database if valid or does not exist in database
+                db.session.add(newcity_obj)
+                db.session.commit()
+            else:
+                error_msg = 'City is invalid.'
+                print(error_msg)
         else:
-            error_msg = 'This city already exists.'
+            error_msg = 'City already exists. Try again.'
+            print(error_msg)
+    
     
     return redirect(url_for('index_get'))
 
