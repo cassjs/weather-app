@@ -12,14 +12,25 @@
     <title>Weather App</title>
 </head>
 <body class="bg-info">
+    
+    <div>
+        <h1>Weather Tracker</h1>
+
+        <div class="input-group mb-3" style="width: 18rem;">
+            <input type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">Search</button>
+            </div>
+          </div>
+
     <div class="card-container card" style="width: 18rem;">
         <div class="card-body">
             <div class="card-text">
-                {{ weather.city }}<br>
-                {{ weather.temperature }}° F<br>
+                <h4>{{ weather.city }}</h3><br>
                 {{ weather.description }}<br>
                 <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="image"><br>
-                <pre>H: {{ weather.high }}  L: {{ weather.low }}</pre>
+                <h2>{{ weather.temperature }}° F</h2><br>
+                <span class="p-4 pt-2 pb-2">H: {{ weather.high }}</span>L: {{ weather.low }}<br>
             </div>
         </div>
     </div>
