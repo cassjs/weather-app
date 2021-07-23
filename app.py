@@ -17,7 +17,7 @@ db.create_all()
 
 @app.route('/')
 def index():
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=734bd3e5ad848030de098b13791517e1'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid='
     city = 'Beaverton'
     
     r = requests.get(url.format(city)).json()
