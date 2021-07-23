@@ -12,9 +12,30 @@
     <title>Weather App</title>
 </head>
 <body class="bg-info">
-    {% block body %}
     
-    {% endblock %}
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <h3 class="text-center">What's Today's Weather?</h3>
+
+        <div class="input-group mb-3" style="width: 18rem;">
+            <input type="text" class="form-control" placeholder="City" aria-label="City" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">Search</button>
+            </div>
+        </div>
+
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body text-center">
+                <div class="card-text">
+                    <h4>{{ weather.city }}</h3><br>
+                    {{ weather.description }}<br>
+                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="image"><br>
+                    <h2>{{ weather.temperature }}° F</h2><br>
+                    <span class="p-4 pt-2 pb-2">H: {{ weather.high }}</span>L: {{ weather.low }}<br>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Bootstrap bundle with popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
