@@ -24,6 +24,18 @@
                     <button class="btn btn-primary" type="submit">Add</button>
                 </div>
             </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% set message_class = 'alert-success' %}
+
+                    {% if category == 'error' %}
+                        {% set message_class = 'alert-warning' %}
+                    {% endif %}
+                        <div class="alert {{ message_class }}" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
         </form>
 
         {% for weather in weather_data %}

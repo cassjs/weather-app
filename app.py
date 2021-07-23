@@ -1,14 +1,15 @@
 import requests
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy 
 from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-
-### DATABASE ###
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///weatherdb.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# To use msg flashing, need secret key
+app.config['SECRET_KEY'] = 'secret'
 
 db = SQLAlchemy(app)
 
@@ -26,7 +27,6 @@ def get_weather_data(city):
     r = requests.get(url).json()
     return r
 
-### ROUTES ###
 @app.route('/', methods=['GET'])
 def index():
     # Create variable to hold ALL cities
@@ -39,7 +39,7 @@ def index():
     for city in cities:
         
         r = get_weather_data(city.cityname)
-        # view data returned from api
+        # # view data returned from api
         # print(r)
         
         # create dictionary
@@ -77,11 +77,15 @@ def add():
                 db.session.commit()
             else:
                 error_msg = 'City is invalid.'
-                print(error_msg)
+                # print(error_msg)
         else:
             error_msg = 'City already exists. Try again.'
-            print(error_msg)
-    
+            # print(error_msg)
+            
+    if error_msg: 
+        flash(error_msg, 'error')
+    else: 
+        flash('City added successfully.')
     
     return redirect(url_for('index'))
 
