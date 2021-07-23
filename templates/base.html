@@ -32,21 +32,29 @@
                     {% if category == 'error' %}
                         {% set message_class = 'alert-warning' %}
                     {% endif %}
-                        <div class="alert {{ message_class }}" role="alert">{{ message }}</div>
+                        <div class="alert alert-dismissible fade show {{ message_class }}" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                 {% endfor %}
             {% endif %}
             {% endwith %}
         </form>
 
         {% for weather in weather_data %}
-        <div class="card" style="width: 18rem;">
+        <div class="card mt-2 mb-2" style="width: 18rem;">
+            <a href="{{ url_for('delete', cityname=weather.city) }}">
+                    <button type="button">
+                    <span aria-hidden="true">&times;</span>
+            </button>
+            </a>
             <div class="card-body text-center">
                 <div class="card-text">
                     <h4>{{ weather.city }}</h3><br>
                     {{ weather.description }}<br>
                     <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="image"><br>
                     <h2>{{ weather.temperature }}° F</h2><br>
-                    <span class="p-4 pt-2 pb-2">H: {{ weather.high }}</span>L: {{ weather.low }}<br>
+                    <span class="p-4">H: {{ weather.high }}</span>L: {{ weather.low }}<br>
                 </div>
             </div>
         </div>
