@@ -1,6 +1,8 @@
 import requests
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy 
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
@@ -17,8 +19,10 @@ class City(db.Model):
 db.create_all()
 
 def get_weather_data(city):
+    load_dotenv()
+    API_KEY = os.getenv("API_KEY")
     # Open Weather API: https://openweathermap.org/
-    url = f'http://api.openweathermap.org/data/2.5/weather?q={ city }&units=imperial&appid='
+    url = f'http://api.openweathermap.org/data/2.5/weather?q={ city }&units=imperial&appid={ API_KEY }'
     r = requests.get(url).json()
     return r
 
