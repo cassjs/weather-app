@@ -1,3 +1,5 @@
 __pycache__/
 
 weatherdb.sqlite3
+
+.env
