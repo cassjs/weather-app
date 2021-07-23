@@ -11,14 +11,16 @@ def index():
     city = 'Beaverton'
     
     r = requests.get(url.format(city)).json()
-    # print(r)
+    print(r)
     
     # dictionary
     weather = {
         'city' : city,
         'temperature' : r['main']['temp'],
         'description' : r['weather'][0]['description'],
-        'icon' : r['weather'][0]['icon']
+        'icon' : r['weather'][0]['icon'],
+        'high' : r['main']['temp_max'],
+        'low' : r['main']['temp_min']
     }
     
     print(weather)
