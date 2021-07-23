@@ -54,14 +54,19 @@ def index_get():
 
 @app.route('/', methods=['POST'])
 def index_post():
-
+    error_msg = ''
     newcity = request.form.get('city')
     
-    # If city addition exists, add to database, else do nothing
     if newcity:
-        newcity_obj = City(cityname=newcity)
-        db.session.add(newcity_obj)
-        db.session.commit()
+        # Check if city is already in database
+        cityexists = City.query.filter_by(cityname=newcity).first()
+        # If city does not exist, add to database, else do not add
+        if not cityexists:
+            newcity_obj = City(cityname=newcity)
+            db.session.add(newcity_obj)
+            db.session.commit()
+        else:
+            error_msg = 'This city already exists.'
     
     return redirect(url_for('index_get'))
 
