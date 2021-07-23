@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy 
 
 app = Flask(__name__)
@@ -17,21 +17,13 @@ class City(db.Model):
 db.create_all()
 
 ### ROUTES ###
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        newcity = request.form.get('city')
-        # If city addition exists, add to database, else do nothing
-        if newcity:
-            newcity_obj = City(cityname=newcity)
-            db.session.add(newcity_obj)
-            db.session.commit()
-    
+@app.route('/', methods=['GET'])
+def index_get():
     # Create variable to hold ALL cities
     cities = City.query.all()
     
     # Open Weather API: https://openweathermap.org/
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=734bd3e5ad848030de098b13791517e1'
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid='
 
     # List that holds weather for all cities
     weather_data = []
@@ -59,6 +51,19 @@ def index():
         weather_data.append(weather)
     
     return render_template('base.html', weather_data=weather_data)
+
+@app.route('/', methods=['POST'])
+def index_post():
+
+    newcity = request.form.get('city')
+    
+    # If city addition exists, add to database, else do nothing
+    if newcity:
+        newcity_obj = City(cityname=newcity)
+        db.session.add(newcity_obj)
+        db.session.commit()
+    
+    return redirect(url_for('index_get'))
 
 if __name__ == '__main__':
     app.run(debug=True)
