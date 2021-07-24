@@ -50,13 +50,13 @@
                         <div class="col" align="center">
                             <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="image" style="max-width:20%;">
                             <p class="card-text">
-                                <span class="h4 text-capitalize">{{ weather.city }}</span>
+                                <span class="h4 text-capitalize">{{ weather.city }} <span class="h6 fw-light">({{ weather.country }})</span></span>
                                 <br>
                                 <span class="fw-light text-muted">{{ weather.description }}</span>
                                 <br>
-                                <span class="h4">{{ weather.temperature }}</span><span class="h6"> °F</span>
+                                <span class="h4">{{ weather.temperature | round | int }}</span><span class="h6">&#176;F</span>
                                 <br>
-                                <span class="text-muted fw-light">H: {{ weather.high }} / L: {{ weather.low }}</span>
+                                <span class="text-muted fw-light">H: {{ weather.high | round | int }} / L: {{ weather.low | round | int }}</span>
                         </div>
                     </div>
                 </div>
