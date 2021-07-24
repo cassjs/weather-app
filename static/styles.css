@@ -1,24 +1,18 @@
-/* Prevents overscroll behavior */
-body {
-  overflow: auto;
-}
-.search-bar {
+.main-container {
   text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  max-width: 617px;
+  margin: auto;
 }
-.card-container {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+.btn-delete {
+  float: right;
 }
 /* ------ MEDIA QUERIES ------
 Extra small devices (portrait phones, less than 576px)
 No media query since this is the default in Bootstrap */
 /* Small devices (portrait phones, 320px and up) */
+@media (min-width: 320px) {
+  max-width: 374px;
+}
 /* Small devices (landscape phones, 576px and up) */
 /* Medium devices (tablets, 768px and up) */
 /* Large devices (desktops, 992px and up) */
