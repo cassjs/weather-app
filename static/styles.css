@@ -6,13 +6,29 @@
 .btn-delete {
   float: right;
 }
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 12px;
+}
+#myBtn:hover {
+  background-color: #555;
+  /* Add a dark-grey background on hover */
+}
+body {
+  overflow: auto;
+}
 /* ------ MEDIA QUERIES ------
 Extra small devices (portrait phones, less than 576px)
 No media query since this is the default in Bootstrap */
 /* Small devices (portrait phones, 320px and up) */
-@media (min-width: 320px) {
-  max-width: 374px;
-}
 /* Small devices (landscape phones, 576px and up) */
 /* Medium devices (tablets, 768px and up) */
 /* Large devices (desktops, 992px and up) */
