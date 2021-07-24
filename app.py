@@ -45,6 +45,7 @@ def index():
         # create dictionary
         weather = {
             'city' : city.cityname,
+            'country' : r['sys']['country'],
             'temperature' : r['main']['temp'],
             'description' : r['weather'][0]['description'],
             'icon' : r['weather'][0]['icon'],
