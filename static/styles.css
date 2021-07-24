@@ -6,6 +6,10 @@
 .btn-delete {
   float: right;
 }
+.btn-delete:hover {
+  background-color: #ffc107;
+  border-radius: 20px;
+}
 #myBtn {
   display: none;
   position: fixed;
