@@ -13,13 +13,13 @@
 </head>
 <body class="bg-info">
     
-    <div class="position-absolute top-50 start-50 translate-middle">
+    <div class="main-container bg-light m-4 p-4 mx-auto">
 
         <h3 class="text-center">What's Today's Weather?</h3>
 
         <form action="{{ url_for('add') }}" method="POST">
-            <div class="input-group mb-3" style="width: 18rem;">
-                <input type="text" class="form-control" name="city">
+            <div class="input-group mb-3 mx-auto" style="width: 18rem;">
+                <input type="text" class="form-control" name="city" placeholder="City">
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">Add</button>
                 </div>
@@ -32,24 +32,34 @@
                     {% if category == 'error' %}
                         {% set message_class = 'alert-warning' %}
                     {% endif %}
-                        <div class="alert {{ message_class }}" role="alert">{{ message }}</div>
+                        <div class="alert alert-dismissible fade show {{ message_class }} mx-auto" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                 {% endfor %}
             {% endif %}
             {% endwith %}
         </form>
 
         {% for weather in weather_data %}
-        <div class="card" style="width: 18rem;">
-            <div class="card-body text-center">
-                <div class="card-text">
-                    <h4>{{ weather.city }}</h3><br>
-                    {{ weather.description }}<br>
-                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="image"><br>
-                    <h2>{{ weather.temperature }}° F</h2><br>
-                    <span class="p-4 pt-2 pb-2">H: {{ weather.high }}</span>L: {{ weather.low }}<br>
+                <div class="card-container card p-4 mt-2 d-inline-flex" style="width: 16rem;">
+                    <div class="row">
+                        <a href="{{ url_for('delete', cityname=weather.city) }}">
+                            <button type="button" class="btn-delete btn fw-light text-muted">&times;</button>
+                        </a>
+                        <div class="col" align="center">
+                            <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="image" style="max-width:20%;">
+                            <p class="card-text">
+                                <span class="h4 text-capitalize">{{ weather.city }}</span>
+                                <br>
+                                <span class="fw-light text-muted">{{ weather.description }}</span>
+                                <br>
+                                <span class="h4">{{ weather.temperature }}</span><span class="h6"> °F</span>
+                                <br>
+                                <span class="text-muted fw-light">H: {{ weather.high }} / L: {{ weather.low }}</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
         {% endfor %}
     </div>
     <!-- Bootstrap bundle with popper -->

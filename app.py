@@ -89,5 +89,14 @@ def add():
     
     return redirect(url_for('index'))
 
+@app.route('/delete/<cityname>')
+def delete(cityname):
+    city = City.query.filter_by(cityname=cityname).first()
+    db.session.delete(city)
+    db.session.commit()
+    
+    flash(f'Successfully deleted { city.cityname }', 'alert-success')
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
