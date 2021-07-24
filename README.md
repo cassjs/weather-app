@@ -3,9 +3,10 @@
 A simple weather application inspired from a YouTube tutorial [PrettyPrinted](https://www.youtube.com/watch?v=lWA0GgUN8kg). Data is pulled via the [Open Weather Map API](https://openweathermap.org/api) and allows for tracking of current weather in multiple cities worldwide.
 
 ## **Build**
-- **Language & Framework:** Python, Flask
+- **Language & Framework:** Python, JavaScript, Flask
 - **Database:** Flask-SQLAlchemy
 - **Styling:** Bootstrap, LESS
+- **Scripting:** Bash
 - **Deployment:** Docker, Azure 
 
 ## **Features**
