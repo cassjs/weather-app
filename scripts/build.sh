@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Build Docker image
-docker build -t cassjs.azurecr.io/weather-app .
+docker build -t cassjsweatherapp.azurecr.io/weather-app .

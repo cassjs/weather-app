@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Push image to Azure container registry
-docker push cassjs.azurecr.io/weather-app
+docker push cassjsweatherapp.azurecr.io/weather-app
