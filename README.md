@@ -4,7 +4,7 @@ A simple weather application inspired from a YouTube tutorial [PrettyPrinted](ht
 
 ## **Build**
 - **Language & Framework:** Python, Flask
-- **Database:** Flask-SQLAlchem
+- **Database:** Flask-SQLAlchemy
 - **Styling:** Bootstrap, LESS
 - **Deployment:** Docker, Azure 
 
