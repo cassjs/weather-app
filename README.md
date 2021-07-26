@@ -99,12 +99,12 @@ A simple weather application inspired from a YouTube tutorial [PrettyPrinted](ht
 	* Set the flask environment
 
 	      #Windows
-	      $ set FLASK_ENV=fin_app.py
+	      $ set FLASK_ENV=app.py
 
 		or
 
 	      #Mac / Unix / WSL
-	      $ export FLASK_ENV=fin_app.py
+	      $ export FLASK_ENV=app.py
 
 
 	### **Run application**
