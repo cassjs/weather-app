@@ -16,7 +16,7 @@ A simple weather application inspired from a YouTube tutorial [PrettyPrinted](ht
 - Alert flash messaging for entries via add/delete/invalid/duplicate
 - Responsive styling viewable on mobile or desktop devices
 - Return-to-top button for user-friendly interface
-- Containerized via Docker with bash scripts ti automate build/run/stop commands
+- Containerized via Docker with bash scripts to automate build/run/stop commands
 - Deployed via Azure container registry and Azure App Service w/ continuous deployment
 
 ## **Preview:**
