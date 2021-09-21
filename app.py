@@ -56,7 +56,7 @@ def index():
         # After every loop, append weather for city to weather_data list
         weather_data.append(weather)
     
-    return render_template('base.html', weather_data=weather_data)
+    return render_template('dashboard.html', weather_data=weather_data)
 
 @app.route('/add/', methods=['POST'])
 def add():
