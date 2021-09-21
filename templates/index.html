@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+    <div class="template-container">
+        <h1 class="mb-4">welcome</h1>
+        <a href="{{ url_for('login') }}" class="btn btn-primary mr-2" role="button" aria-pressed="true">login</a>
+        <a href="{{ url_for('signup') }}" class="btn btn-outline-primary" role="button" aria-pressed="true">signup</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Verify Email{% endblock %}
+{% block content %}
+    <div class="template-container">
+        <h3 class="mb-4">verify email</h3>
+        {% if error %}
+            <p><strong class=error><span class="small text-danger">Error:</strong><span class="small text-danger"> {{ error }}</span></span></p>
+        {% endif %}
+        <form method="POST">
+            <div class="form-group mb-2">
+                <input class="form-control" type="text" name="verificationcode" placeholder="enter verification code">
+            <!-- </p> -->
+            </div>
+            <div class="field">
+            <p class="control">
+                <button class="btn btn-primary mt-4" type="submit" value = "Submit">submit</button>
+            </p>
+            </div>
+        </form>
+    </div>
+{% endblock %}
