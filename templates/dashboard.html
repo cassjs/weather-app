@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+    <div class="main-container bg-light m-4 p-4 mx-auto">
+        <h3 class="text-center">What's Today's Weather? ☁️ </h3>
+
+        <form action="{{ url_for('add') }}" method="POST">
+            <div class="input-group mb-3 mx-auto" style="width: 18rem;">
+                <input type="text" class="form-control" name="city" placeholder="City">
+                <div class="input-group-append">
+                    <button class="btn btn-warning" type="submit">Add</button>
+                </div>
+            </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% set message_class = 'alert-success' %}
+
+                    {% if category == 'error' %}
+                        {% set message_class = 'alert-warning' %}
+                    {% endif %}
+                        <div class="alert alert-dismissible fade show {{ message_class }} mx-auto" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </form>
+
+        {% for weather in weather_data %}
+                <div class="card-container card p-4 mt-2 d-inline-flex" style="width: 16rem;">
+                    <div class="row">
+                        <a href="{{ url_for('delete', cityname=weather.city) }}">
+                            <button type="button" class="btn-delete btn fw-light text-muted">&times;</button>
+                        </a>
+                        <div class="col" align="center">
+                            <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="image" style="max-width:20%;">
+                            <p class="card-text">
+                                <span class="h4 text-capitalize">{{ weather.city }} <span class="h6 fw-light">({{ weather.country }})</span></span>
+                                <br>
+                                <span class="fw-light text-muted">{{ weather.description }}</span>
+                                <br>
+                                <span class="h4">{{ weather.temperature | round | int }}</span><span class="h6">&#176;F</span>
+                                <br>
+                                <span class="text-muted fw-light">H: {{ weather.high | round | int }} / L: {{ weather.low | round | int }}</span>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+        <span class="source fw-light"><br><br>Source: <a href="https://openweathermap.org/api" target="_blank">Open Weather Map API</a></span>
+    </div>
+
+    <!-- Back to top button (Source: https://www.w3schools.com/howto/howto_js_scroll_to_top.asp)-->
+    <button onclick="topFunction()" type="button" class="btn btn-warning" id="myBtn" title="Go to top"><span class="fw-light text-center">^</span></button>
+
+    <script>
+    //Get the button:
+    mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+    } else {
+        mybutton.style.display = "none";
+    }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+    </script>
+
+{% endblock %}

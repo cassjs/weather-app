@@ -1,5 +1,14 @@
+# Byte-compiled / optimized / DLL files
 __pycache__/
 
+# Database
 *.sqlite3
 
+# Environments
 .env
+
+# Mac hidden files
+.DS_Store
+
+#vscode
+**.vscode/
