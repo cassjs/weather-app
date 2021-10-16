@@ -1,8 +1,8 @@
-// Color Palette 
-@import 'palette.less';
+// // Color Palette 
+// @import 'palette.less';
 
-// Parametrics Mixins Library
-@import 'mixins.less';
+// // Parametrics Mixins Library
+// @import 'mixins.less';
 
 .main-container {
     text-align: center;
@@ -10,8 +10,23 @@
     margin: auto;
 }
 
+.template-container {
+    text-align: center;
+    margin: auto;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
 .btn-delete {
     float: right;
+}
+
+label {
+    display: none;
+    position: absolute;
 }
 
 .btn-delete:hover {
@@ -81,6 +96,5 @@ No media query since this is the default in Bootstrap */
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
-
+    
 }
-
